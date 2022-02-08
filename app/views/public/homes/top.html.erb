@@ -1,0 +1,31 @@
+<div class="container ml-5">
+  <div class="row">
+    <div class ="col-3">
+      ジャンル検索
+    </div>
+    <div class ="col-9">
+      <div>
+        <p>ようこそ、ながのCAKEへ！</p>
+        <p>このサイトは、ケーキ販売のECサイトになります。</p>
+        <p>会員でない方も商品の閲覧はできますが、</p>
+        <p>購入には会員登録が必要になります。</p>
+      </div>
+      <div>
+        <h2>新着商品</h2>
+          <div class="d-flex">
+            <% @items.each do |item| %>
+            <div style="width:25%;">
+            <%= link_to item_path(item.id) do %>
+              <%= attachment_image_tag item, :image, size:'100x100' %></br>
+              <%= item.name %></br>
+            <% end %>
+            ¥<%= item.price %>
+            </div>
+            <% end %>
+          </div>
+
+      </div>
+      <%= link_to "全ての商品をみる>",items_path  %>
+    </div>
+  </div>
+</div>

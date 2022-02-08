@@ -1,0 +1,20 @@
+<div class="container ml-5 mt-5">
+  <div class="row">
+    <div class ="col-3">
+      ジャンル検索
+    </div>
+    <div class ="col-4">
+      <%= attachment_image_tag @item, :image, size:'300x300' %>
+    </div>
+    <div class ="col-5">
+      <h3><%= @item.name %></h3>
+      <%= @item.introduction %>
+      <h3>¥<%= @item.with_tax_price.to_s(:dalimited) %>(税込)</h3>
+      <%= form_with model:@cart_items, url:cart_items_path, local:true do |f| %>
+        <%= f.select :amount, [*1..10],{ include_blank: "選択してください" } %>
+        <div class="actions">
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.submit "カートに入れる", class:"btn btn-success" %>
+        </div>
+      <% end %>
+    </div>

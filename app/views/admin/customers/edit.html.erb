@@ -1,0 +1,33 @@
+  <%= form_with model:@customer, url:admin_customer_path(@customer), local:true do |f| %>
+    <h3><%= @customer.full_name %>さんの会員情報編集</h3>
+    <table class='table table-hover table-inverse'>
+      <tr>
+      　<th>会員ID</th><td><%= @customer.id %></td>
+      </tr>
+      <tr>
+      　<th>氏名</th><td><p id="test"><%= f.text_field :last_name %></p><%= f.text_field :first_name %></td>
+      </tr>
+      <tr>
+      　<th>フリガナ</th><td><p id="test"><%= f.text_field :last_name_kana %></p><%= f.text_field :first_name_kana %></td>
+      </tr>
+      <tr>
+      　<th>郵便番号</th><td><%= f.text_field :postal_code %></td>
+      </tr>
+      <tr>
+      　<th>住所</th><td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+      　<th>電話番号</th><td><%= f.text_field :telephone_number %></td>
+      </tr>
+      <tr>
+      　<th>メールアドレス</th><td><%= f.text_field :email %></td>
+      </tr>
+      <tr>
+      　<th>会員ステータス</th>
+      　<td><%= f.radio_button :is_active, 0,checked: true %>有効<%= f.radio_button :is_active, 1 %>退会</td>
+      </tr>
+    </table>
+    <%= f.submit "変更を保存", class:"btn btn-success" %>
+  <% end %>
+
+

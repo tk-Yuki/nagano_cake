@@ -1,0 +1,54 @@
+<h3>注文情報確認</h3>
+<table class='table table-hover table-inverse'>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+
+  <% @items.each do |cart_item| %>
+  <tr>
+    <td><%= cart_item.item.name %></td>
+    <td><%= cart_item.item.with_tax_price %></td>
+    <td><%= cart_item.amount %></td>
+    <td><%= cart_item.subtotal %></td>
+    <% @total_price += cart_item.subtotal %>
+  </tr>
+  <% end %>
+</table>
+</br>
+<table class='table table-hover table-inverse'>
+  <tr>
+    <th>送料</th>
+    <td>800</td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= @total_price %></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <td><%= @total_price + 800 %></td>
+  </tr>
+</table>
+
+<h4>支払い方法</h4>
+<%= @order.payment_method_i18n %>
+
+<h4>お届け先</h4>
+<%= @order.postal_code %>
+<%= @order.address %>
+<%= @order.name %>
+
+
+<%= form_with model: @order, url:orders_path, method: :post, local: true do |f| %>
+  <%= f.hidden_field :postal_code %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :payment_method %>
+  <%= f.hidden_field :total_amount, value: @total_price.to_i %>
+  <%= f.submit "注文を確定する", class: "btn btn-success"%>
+<% end %>
+
+

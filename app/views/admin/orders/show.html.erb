@@ -1,0 +1,44 @@
+<h3>注文履歴詳細</h3>
+</br>
+<table class='table table-hover table-inverse'>
+  <tr>
+    <th>購入者</th><td><%= @order.customer.full_name %></td>
+  </tr>
+  <tr>
+    <th>注文日</th><td><%= @order.created_at %></td>
+  </tr>
+  <tr>
+    <th>配送先</th><td><%= @order.address %></td>
+  </tr>
+  <tr>
+    <th>支払方法</th><td><%= @order.payment_method_i18n %></td>
+  </tr>
+</table>
+</br>
+<table class='table table-hover table-inverse'>
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+  <% @order.order_details.each do |order_detail| %>
+  <tr>
+    <td><%= order_detail.item.name %></td>
+    <td><%= order_detail.item.with_tax_price %></td>
+    <td><%= order_detail.amount %></td>
+    <td><%= order_detail.price %></td>
+  </tr>
+  <% end %>
+</table>
+<table>
+  <tr>
+    <th>商品合計</th><td><%= @order.total_amount %>円</td>
+  </tr>
+  <tr>
+    <th>送料</th><td>800円</td>
+  </tr>
+  <tr>
+    <th>請求金額合計</th><td><%= @order.total_amount.to_i + 800 %>円</td>
+  </tr>
+</table>
