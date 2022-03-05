@@ -1,5 +1,5 @@
 <h1>商品編集</h1>
-　<%= form_with model:@item, url: admin_item_path(@item), local:true do |f| %>
+<%= form_with model:@item, url: admin_item_path(@item), local:true do |f| %>
 
   <div class="form-group">
     <%= f.label :image_id, "商品画像" %>
@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <%= f.label :is_active, "販売ステータス" %>
-   <%= f.radio_button :is_active, 0,checked: true %>販売中<%= f.radio_button :is_active, 1 %>販売停止中
+    <%= f.radio_button :is_active, 0,checked: true %>販売中<%= f.radio_button :is_active, 1 %>販売停止中
   </div>
 
   <div class="actions">

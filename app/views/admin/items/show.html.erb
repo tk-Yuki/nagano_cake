@@ -1,36 +1,35 @@
 <div class="ml-5">
-
-<h2 class="p-3 mb-2 bg-light text-dark text-center w-25">商品詳細</h2>
-<div class="d-flex flex-row bd-highlight mb-3 center-block">
-  <div class="p-2 bd-highlight">
-		<div id="img_field">
-			<%= attachment_image_tag @item, :image, :fill,300,220, fallback: "no_image.jpg" %>
+	<h2 class="p-3 mb-2 bg-light text-dark text-center w-25">商品詳細</h2>
+	<div class="d-flex flex-row bd-highlight mb-3 center-block">
+	  <div class="p-2 bd-highlight">
+			<div id="img_field">
+				<%= attachment_image_tag @item, :image, :fill,300,220, fallback: "no_image.jpg" %>
+			</div>
+		</div>
+		<div class="p-2 bd-highlight">
+			<div class="field">
+				<p>商品名:<%= @item.name %></p>
+			</div><br>
+			<div class="field">
+				<p>商品説明:<%= @item.introduction %></p><br>
+			</div>
+			<div class="field">
+			  <p>ジャンル:<%= @item.genre.name %></p><br>
+			</div>
+			<div class="field">
+				<p>税込価格（税抜価格）:<%= @item.with_tax_price.to_s(:dalimited) %>円(<%= @item.price %>)円</p>
+			</div>
+			<div class="field">
+				<p>販売ステータス:
+			  <% if @item.is_active == true %>
+				  <p>販売中</p>
+			  <% elsif @item.is_active == false %>
+					<p>販売停止中</p>
+			  <% end %></p>
+			</div>
+			<div class="actions col-xs-9">
+			  <%= link_to "編集する", edit_admin_item_path(@item), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+			</div>
 		</div>
 	</div>
-	<div class="p-2 bd-highlight">
-		<div class="field">
-			<p>商品名:<%= @item.name %></p>
-		</div><br>
-		<div class="field">
-			<p>商品説明:<%= @item.introduction %></p><br>
-		</div>
-		<div class="field">
-		  <p>ジャンル:<%= @item.genre.name %></p><br>
-		</div>
-		<div class="field">
-			<p>税込価格（税抜価格）:<%= @item.with_tax_price.to_s(:dalimited) %>円(<%= @item.price %>)円</p>
-		</div>
-		<div class="field">
-			<p>販売ステータス:
-		  <% if @item.is_active == true %>
-			  <p>販売中</p>
-		  <% elsif @item.is_active == false %>
-				<p>販売停止中</p>
-		  <% end %></p>
-		</div>
-		<div class="actions col-xs-9">
-		  <%= link_to "編集する", edit_admin_item_path(@item), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
-		</div>
-	</div>
-</div>
 </div>
